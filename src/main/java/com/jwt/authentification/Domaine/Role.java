@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import static javax.persistence.GenerationType.AUTO;
@@ -17,13 +18,11 @@ import static javax.persistence.GenerationType.AUTO;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "roles")
-public class Role{
+public class Role {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
 
     @Enumerated(EnumType.STRING)
     @Column(length = 20)

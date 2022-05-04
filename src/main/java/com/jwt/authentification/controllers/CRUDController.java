@@ -23,6 +23,8 @@ import java.util.*;
 public class CRUDController {
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
     RoleRepository roleRepository;
     //-------------------------------------CRUD----------------------------------//
     @GetMapping("/users")
@@ -47,7 +49,7 @@ public class CRUDController {
     //-----------------------------
 
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/users/{id}")
     public void deleteUser(@PathVariable("id") Long id) {
         userRepository.deleteById(id);
     }
