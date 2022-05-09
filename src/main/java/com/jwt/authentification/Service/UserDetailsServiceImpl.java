@@ -1,15 +1,20 @@
 package com.jwt.authentification.Service;
 
 
+import com.jwt.authentification.Domaine.ERole;
+import com.jwt.authentification.Domaine.Role;
 import com.jwt.authentification.Domaine.User;
+import com.jwt.authentification.Repository.RoleRepository;
 import com.jwt.authentification.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -17,6 +22,9 @@ import java.util.Optional;
 public class UserDetailsServiceImpl implements UserDetailsService , UserService{
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    RoleRepository roleRepository;
+
 
     @Override
     @Transactional
@@ -41,4 +49,13 @@ public class UserDetailsServiceImpl implements UserDetailsService , UserService{
         return userRepository.findById(id).get();
 
     }
+    //------------les methode  de interface AccountService ------
+
+
+    @Override
+    public Role saveRole(Role role) {
+        return roleRepository.save(role);
+    }
+
+
 }

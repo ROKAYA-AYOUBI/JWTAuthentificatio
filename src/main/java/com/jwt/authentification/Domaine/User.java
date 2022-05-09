@@ -6,7 +6,7 @@ import javax.validation.constraints.*;
 import java.util.HashSet;
 import java.util.Set;
 import javax.validation.constraints.Size;
-//import org.hibernate.validator.constraints.NotEmpty;
+
 
 
 /** Entity User contine les information necessaire ...*/
@@ -27,28 +27,18 @@ public class User  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-/*
+
     @NotBlank
     @Size(max = 20)
-
- */
-    @NotNull(message = "{error.user.username.null}")
-    @NotEmpty(message = "{error.user.username.empty}")
-    @Size(max = 50, message = "{error.user.username.max}")
     private String username;
 
     @NotBlank
     @Size(max = 50)
     @Email
     private String email;
-/*
+
     @NotBlank
     @Size(max = 120)
-
- */
-    @NotNull(message = "{error.user.password.null}")
-    @NotEmpty(message = "{error.user.password.empty}")
-    @Size(max = 50, message = "{error.user.password.max}")
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)

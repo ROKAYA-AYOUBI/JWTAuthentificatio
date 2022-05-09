@@ -3,19 +3,18 @@ package com.jwt.authentification.controllers;
 import com.jwt.authentification.Domaine.ERole;
 import com.jwt.authentification.Domaine.Role;
 import com.jwt.authentification.Domaine.User;
-import com.jwt.authentification.Exception.ResourceNotFoundException;
 import com.jwt.authentification.Repository.RoleRepository;
 import com.jwt.authentification.Repository.UserRepository;
-import com.jwt.authentification.Service.UserDetailsImpl;
 import com.jwt.authentification.Service.UserService;
-import com.jwt.authentification.payload.response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -59,7 +58,7 @@ public class CRUDController {
     }
 
 
-    //---------------------------------------------------------------------------//
+    //--------------------------------Update-------------------------------------------//
 
     @PutMapping("/{id}")
     public User updateUsertw(@PathVariable("id") Long id, @RequestBody User user) {
@@ -67,7 +66,7 @@ public class CRUDController {
         return userRepository.saveAndFlush(user);
     }
 
-
+                            //-----------------//
 
     @PutMapping ("/users/{id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") Long id,@RequestBody User newUser) {
@@ -75,8 +74,8 @@ public class CRUDController {
 
     }
 
+                        //-----------------//
 
-    //--------------------------
 
     @PutMapping("/update/{id}")
     //@PreAuthorize("hasRole('ADMIN')")
@@ -94,8 +93,19 @@ public class CRUDController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    //---------------------------------------------------
+
+
+
+    @PostMapping("/role_save")
+    public Role saveRole(@RequestBody Role role){
+       return userService.saveRole(role);
+    }
+
 
 
 
 
 }
+
+
