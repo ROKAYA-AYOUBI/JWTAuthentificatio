@@ -7,6 +7,7 @@ import com.jwt.authentification.Exception.ResourceNotFoundException;
 import com.jwt.authentification.Repository.RoleRepository;
 import com.jwt.authentification.Repository.UserRepository;
 import com.jwt.authentification.Service.UserDetailsImpl;
+import com.jwt.authentification.Service.UserService;
 import com.jwt.authentification.payload.response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,6 +27,9 @@ public class CRUDController {
 
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    UserService userService;
     //-------------------------------------CRUD----------------------------------//
     @GetMapping("/users")
     public List<User> getAllUsers() {
@@ -58,9 +62,17 @@ public class CRUDController {
     //---------------------------------------------------------------------------//
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable("id") Long id, @RequestBody User user) {
+    public User updateUsertw(@PathVariable("id") Long id, @RequestBody User user) {
         user.setId(id);
         return userRepository.saveAndFlush(user);
+    }
+
+
+
+    @PutMapping ("/users/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable("id") Long id,@RequestBody User newUser) {
+        return ResponseEntity.ok().body(userService.updateUser(id,newUser));
+
     }
 
 
