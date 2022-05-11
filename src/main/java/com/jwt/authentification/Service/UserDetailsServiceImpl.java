@@ -1,30 +1,34 @@
 package com.jwt.authentification.Service;
 
 
-import com.jwt.authentification.Domaine.ERole;
 import com.jwt.authentification.Domaine.Role;
 import com.jwt.authentification.Domaine.User;
+import com.jwt.authentification.Exception.ResourceNotFoundException;
 import com.jwt.authentification.Repository.RoleRepository;
 import com.jwt.authentification.Repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+
 import java.util.Optional;
 
 
+
 @Service
+@Transactional
 public class UserDetailsServiceImpl implements UserDetailsService , UserService{
-    @Autowired
+
     UserRepository userRepository;
-    @Autowired
     RoleRepository roleRepository;
 
+    public UserDetailsServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+    }
 
     @Override
     @Transactional
@@ -35,6 +39,16 @@ public class UserDetailsServiceImpl implements UserDetailsService , UserService{
         return UserDetailsImpl.build(user);
     }
     //------------les methode  de interface UserService ------
+
+
+    //----------------  add roles  ----------------
+
+    @Override
+    public Role saveRole(Role role) {
+        return roleRepository.save(role);
+    }
+
+    //----------------  update  ----------------
     @Override
     public User updateUser(Long id, User user) {
 
@@ -51,11 +65,29 @@ public class UserDetailsServiceImpl implements UserDetailsService , UserService{
     }
 
 
-   //----- add roles
-    @Override
-    public Role saveRole(Role role) {
-        return roleRepository.save(role);
+
+    //-----------------Rest Password-----------------
+    public void updateResetPasswordToken(String token, String email) throws ResourceNotFoundException {
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
+            user.setPassword(token);
+            userRepository.save(user);
+        } else {
+            throw new ResourceNotFoundException("Could not find any customer with the email " + email);
+        }
     }
 
+    public User getByResetPasswordToken(String token) {
+        return userRepository.findByPassword(token);
+    }
+
+    public void updatePassword(User user, String newPassword) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(newPassword);
+        user.setPassword(encodedPassword);
+
+        user.setPassword(null);
+        userRepository.save(user);
+    }
 
 }

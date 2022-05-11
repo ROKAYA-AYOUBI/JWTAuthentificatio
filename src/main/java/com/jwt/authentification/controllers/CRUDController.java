@@ -1,6 +1,5 @@
 package com.jwt.authentification.controllers;
 
-import com.jwt.authentification.Domaine.ERole;
 import com.jwt.authentification.Domaine.Role;
 import com.jwt.authentification.Domaine.User;
 import com.jwt.authentification.Repository.RoleRepository;
@@ -12,9 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -79,7 +76,7 @@ public class CRUDController {
                             //-------Not work----------//
 
     @PutMapping ("/users/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") Long id,@RequestBody User newUser) {
+    public ResponseEntity<User>updateUser(@PathVariable("id") Long id,@RequestBody User newUser) {
         return ResponseEntity.ok().body(userService.updateUser(id,newUser));
 
     }

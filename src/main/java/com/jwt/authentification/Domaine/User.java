@@ -3,6 +3,7 @@ package com.jwt.authentification.Domaine;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import javax.validation.constraints.Size;
@@ -31,6 +32,9 @@ public class User  {
     @NotBlank
     @Size(max = 20)
     private String username;
+
+   // private boolean active;
+
 
     @NotBlank
     @Size(max = 50)

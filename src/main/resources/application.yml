@@ -1,12 +1,12 @@
-spring:
-  mail:
-    host: smtp.gmail.com
-    username: riqqa03@gmail.com
-    password: 
-    port: 587
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
+#spring:
+  #mail:
+    #host: smtp.gmail.com
+   # username: riqqa03@gmail.com
+    #password:
+   # port: 587
+   # properties:
+      #mail:
+       # smtp:
+         # auth: true
+          #starttls:
+          #  enable: true
