@@ -69,7 +69,7 @@ public class CRUDController {
 
 
     //--------------------------------Update-------------------------------------------//
-        //------ Probleme whitout  role
+        //------ Probleme update user whitout  role
     @PutMapping("/{id}")
     public User updateUsertw(@PathVariable("id") Long id, @RequestBody User user) {
         user.setId(id);
