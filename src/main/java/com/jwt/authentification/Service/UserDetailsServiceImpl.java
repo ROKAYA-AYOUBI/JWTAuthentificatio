@@ -34,7 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService , UserService{
 
         return UserDetailsImpl.build(user);
     }
-
+    //------------les methode  de interface UserService ------
     @Override
     public User updateUser(Long id, User user) {
 
@@ -49,9 +49,9 @@ public class UserDetailsServiceImpl implements UserDetailsService , UserService{
         return userRepository.findById(id).get();
 
     }
-    //------------les methode  de interface AccountService ------
 
 
+   //----- add roles
     @Override
     public Role saveRole(Role role) {
         return roleRepository.save(role);
