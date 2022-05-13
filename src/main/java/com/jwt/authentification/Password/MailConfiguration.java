@@ -14,16 +14,28 @@ public class MailConfiguration {
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
-        mailSender.setPort(587);
+        mailSender.setPort(465);
+        //mailSender.setPort(587);
 
-        mailSender.setUsername("benwafaa959@gmail.com");
-        mailSender.setPassword("fLM80@sdf");
+        mailSender.setUsername("paponni666@gmail.com");
+        mailSender.setPassword("cphasfsvbqxywpge");
 
-        Properties props = mailSender.getJavaMailProperties();
+        Properties properties = mailSender.getJavaMailProperties();
+        properties.put("mail.smtp.host", "host");
+        properties.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.ssl.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+        /*
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
 
+         */
+
         return mailSender;
     }
 }
+
+
+
+

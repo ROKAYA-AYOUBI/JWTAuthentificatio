@@ -33,7 +33,7 @@ public class User  {
     @Size(max = 20)
     private String username;
 
-   // private boolean active;
+    // private boolean active;
 
 
     @NotBlank
@@ -60,6 +60,15 @@ public class User  {
         this.email = email;
         this.password = password;
 
+    }
+
+
+
+    public User(String username, String email, String password, Set<Role> roles) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
     }
 
 

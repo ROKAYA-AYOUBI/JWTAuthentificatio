@@ -1,25 +1,22 @@
 package com.jwt.authentification.payload.request;
 
+import com.jwt.authentification.Domaine.Role;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
 public class UpdateRequest {
-    @NotBlank
-    @Size(min = 3, max = 20)
+
+
     private String username;
-
-    @NotBlank
-    @Size(max = 50)
-    @Email
-    private String email;
-
-    private Set<String> role;
-
-    @NotBlank
-    @Size(min = 6, max = 40)
+    private Set<Role> role;
     private String password;
+
 
     public String getUsername() {
         return username;
@@ -29,19 +26,11 @@ public class UpdateRequest {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Set<String> getRole() {
+    public Set<Role> getRole() {
         return role;
     }
 
-    public void setRole(Set<String> role) {
+    public void setRole(Set<Role> role) {
         this.role = role;
     }
 
@@ -52,4 +41,6 @@ public class UpdateRequest {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }
