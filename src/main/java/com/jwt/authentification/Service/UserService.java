@@ -21,6 +21,10 @@ public interface UserService {
     public User getByResetPasswordToken(String token);
     public void updatePassword(User user, String newPassword);
 
+
+
+
+
     //-----------update methode
 
 

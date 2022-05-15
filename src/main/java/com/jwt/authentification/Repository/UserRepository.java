@@ -19,11 +19,7 @@ public interface UserRepository extends JpaRepository <User,Long>{
 
 
 
-    Optional<User> findByUsernameOrEmail(String username, String email);
-
-
-
-//forget pwd
+    //------------forget pwd
     @Query("SELECT u FROM User u WHERE u.email = ?1")
     public User findByEmail(String email);
     public User findByPassword(String token);

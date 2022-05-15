@@ -14,7 +14,8 @@ public class UpdateRequest {
 
 
     private String username;
-    private Set<Role> role;
+    private Set<Role> name;
+    private String email;
     private String password;
 
 
@@ -26,13 +27,7 @@ public class UpdateRequest {
         this.username = username;
     }
 
-    public Set<Role> getRole() {
-        return role;
-    }
 
-    public void setRole(Set<Role> role) {
-        this.role = role;
-    }
 
     public String getPassword() {
         return password;
@@ -42,5 +37,19 @@ public class UpdateRequest {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Set<Role> getRole() {
+        return name;
+    }
+
+    public void setRole(Set<Role> name) {
+        this.name = name;
+    }
 }

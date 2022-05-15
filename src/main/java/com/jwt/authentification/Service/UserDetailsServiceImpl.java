@@ -62,17 +62,6 @@ public class UserDetailsServiceImpl implements UserDetailsService , UserService{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     //------------les methode  de interface UserService ------
 
 
@@ -124,7 +113,11 @@ public class UserDetailsServiceImpl implements UserDetailsService , UserService{
         user.setPassword(null);
         userRepository.save(user);
     }
-//--------- update methode
+//--------- Crud methode
+
+
+
+
 
 
 

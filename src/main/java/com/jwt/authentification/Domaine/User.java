@@ -51,7 +51,8 @@ public class User  {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles= new HashSet<>();
 
-
+    @OneToOne
+    private RefreshToken token;
 
     public User(String username, String email, String password) {
 
